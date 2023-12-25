@@ -5,3 +5,13 @@ iOS에서 데이터를 저장하는 방법을 이해하기 위해 다양한 선�
 ## ✅ Project
 ### Todoey
 모든 작업을 추적하는 할일 목록 앱 입니다.
+
+## ✅ Learn About
+
+### UserDefaults
+
+***
+
+### CoreData
+
+***
