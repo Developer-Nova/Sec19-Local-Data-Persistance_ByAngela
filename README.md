@@ -10,8 +10,25 @@ iOS에서 데이터를 저장하는 방법을 이해하기 위해 다양한 선�
 
 ### UserDefaults
 
+~~~ swift
+~~~
+
 ***
 
 ### CoreData
 
+~~~ swift
+~~~
+
 ***
+
+## ✅ Library
+
+### Realm
+
+~~~ swift
+Realm.Configuration.defaultConfiguration.fileURL
+~~~
+
+### SwipeCellKit
+
