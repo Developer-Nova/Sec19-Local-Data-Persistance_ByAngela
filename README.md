@@ -99,10 +99,8 @@ final class Item: Object {
 #### Create
 
 ~~~ swift
-// 새로운 객체 생성
 let category = Category()
 
-// write transaction block
 try! realm.write { 
     realm.add(category)
 }
