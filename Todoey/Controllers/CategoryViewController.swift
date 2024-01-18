@@ -2,24 +2,26 @@
 //  CategoryViewController.swift
 //  Todoey
 //
-//  Created by Toy on 12/21/23.
+//  Created by Nova on 1/17/24.
 //  Copyright © 2023 App Brewery. All rights reserved.
 //
 
 import UIKit
-import CoreData
+import RealmSwift
 
-final class CategoryViewController: UITableViewController {
-    
-    private var categories = [Category]()
-    private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+final class CategoryViewController: SwipeTableViewController {
+    // MARK: - Property
+    private let realm = try! Realm()
+    private var categories: Results<Category>?
 
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
         loadCategories()
     }
 
+    // MARK: - Helper
     @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
         var textField = UITextField()
         
@@ -27,12 +29,10 @@ final class CategoryViewController: UITableViewController {
         
         let action = UIAlertAction(title: "Add", style: .default) { _ in
             
-            let newCategory = Category(context: self.context)
+            let newCategory = Category()
             newCategory.name = textField.text!
             
-            self.categories.append(newCategory)
-            
-            self.saveCategories()
+            self.save(category: newCategory)
         }
         
         alert.addTextField { field in
@@ -45,9 +45,11 @@ final class CategoryViewController: UITableViewController {
         present(alert, animated: true)
     }
     
-    private func saveCategories() {
+    private func save(category: Category) {
         do {
-            try context.save()
+            try realm.write {
+                realm.add(category)
+            }
         } catch {
             print(error)
         }
@@ -56,38 +58,48 @@ final class CategoryViewController: UITableViewController {
     }
     
     private func loadCategories() {
-        let request: NSFetchRequest<Category> = Category.fetchRequest()
-        
-        do {
-            categories = try context.fetch(request)
-        } catch {
-            print(error)
-        }
+        categories = realm.objects(Category.self)
         
         self.tableView.reloadData()
     }
-
+    
+    override func updateModel(at indexPath: IndexPath) {
+        if let categoryForDeletion = categories?[indexPath.row] {
+            do {
+                try realm.write {
+                    realm.delete(categoryForDeletion)
+                }
+            } catch {
+                print(error)
+            }
+        }
+    }
+    
 }
 
+// MARK: - UITableViewDataSource Method
 extension CategoryViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return categories.count
+        return categories?.count ?? 1
     }
-
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryCell", for: indexPath)
+        let cell = super.tableView(tableView, cellForRowAt: indexPath)
         
-        var content = cell.defaultContentConfiguration()
-        
-        content.text = categories[indexPath.row].name
-        
-        cell.contentConfiguration = content
+        if let category = categories?[indexPath.row] {
+            var content = cell.defaultContentConfiguration()
+            
+            content.text = category.name
+            
+            cell.contentConfiguration = content
+        }
         
         return cell
     }
     
 }
 
+// MARK: - UITableViewDelegate Method
 extension CategoryViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: "goToItems", sender: self)
@@ -100,7 +112,7 @@ extension CategoryViewController {
         
         guard let indexPath = tableView.indexPathForSelectedRow else { return }
         
-        destinationVC.selectedCategory = categories[indexPath.row]
+        destinationVC.selectedCategory = categories?[indexPath.row]
     }
     
 }
