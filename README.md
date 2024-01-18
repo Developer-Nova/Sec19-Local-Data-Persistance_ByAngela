@@ -53,8 +53,6 @@ let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMas
 
 > [Core Data Document](https://developer.apple.com/documentation/coredata/)
 
-***
-
 ## 🔥 Library
 
 ### ✅ Realm
