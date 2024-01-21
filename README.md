@@ -8,11 +8,15 @@
 - [Learn About](#-Learn-About)   
 - [Library](#-Library)   
 
+<br>
+
 ## 🔥 Team
 |**Nova**|
 |--------|
 |<img src="https://github.com/Developer-Nova/Sec19-Local-Data-Persistance_ByAngela/assets/123448121/17a2ba3b-a618-4ac8-93b9-0d0e02c19c78" width="110" height="110">|
 |[Nova's GitHub](https://github.com/Developer-Nova)|
+
+<br>
 
 
 ## 🔥 Project
@@ -22,6 +26,8 @@
 |Add New Category|Delete Category|Check Mark|Search Category|
 |----|----|----|----|
 |<img src="https://github.com/Developer-Nova/Sec19-Local-Data-Persistance_ByAngela/assets/123448121/fc50561e-82a8-4e8f-93f3-496a179ac024" width="210" height="440">|<img src="https://github.com/Developer-Nova/Sec19-Local-Data-Persistance_ByAngela/assets/123448121/8f805d5b-4944-42ec-96ae-5abff6dcb753" width="210" height="440">|<img src="https://github.com/Developer-Nova/Sec19-Local-Data-Persistance_ByAngela/assets/123448121/c3069631-6cc1-4e37-8b3c-377e90732fab" width="210" height="440">|<img src="https://github.com/Developer-Nova/Sec19-Local-Data-Persistance_ByAngela/assets/123448121/b8fe31e1-3a89-4e57-9c42-4df0404079bf" width="210" height="440">|
+
+<br>
 
 ## 🔥 Learn About
 
@@ -38,7 +44,7 @@ let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainM
 
 > [UserDefaults Document](https://developer.apple.com/documentation/foundation/userdefaults/)
 
-***
+#
 
 ### ✅ CoreData
 CloudKit을 사용하여 단일 장치에서 데이터를 유지 또는 캐시하거나 데이터를 여러 장치에 동기화 할 수 있는 프레임워크 입니다. 
@@ -52,6 +58,8 @@ let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMas
 ~~~
 
 > [Core Data Document](https://developer.apple.com/documentation/coredata/)
+
+<br>
 
 ## 🔥 Library
 
@@ -139,7 +147,7 @@ if let categoryForDeletion = categories?[indexPath.row] {
 > [Realm.io: Realm Home](https://realm.io/)   
 > [Realm-Swift Repo](https://github.com/realm/realm-swift)
 
-***
+#
 
 ### ✅ SwipeCellKit
 SwipeCellKit 은 `UITableViewCell` 다음 `UICollectionViewCell`을 지원하는 스와이프 라이브러리 입니다.
